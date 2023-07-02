@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 async function getData() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/p1osts", {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
     next: {
       revalidate: 60,
     },
@@ -13,7 +13,7 @@ async function getData() {
 
 export default async function Blog() {
   const posts = await getData();
-  console.log(posts);
+
   return (
     <>
       <h2 className="font-black">Blog page</h2>

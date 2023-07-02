@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Navigation } from "./Navigation";
 
 const navItems = [
@@ -9,8 +10,7 @@ const navItems = [
 export const Header = () => {
   return (
     <header className="text-white">
-      {/* <Navigation navLinks={navItems} /> */}
-      header
+      <Navigation navLinks={navItems} />
     </header>
   );
 };

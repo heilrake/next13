@@ -1,40 +1,33 @@
-import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/react';
-import { usePathname } from 'next/navigation';
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type NavLink = {
   label: string;
   href: string;
 };
-type Props = {
+
+type NavigationProps = {
   navLinks: NavLink[];
 };
 
-export const Navigation = ({ navLinks }: Props) => {
+export const Navigation = (props: NavigationProps) => {
+  const { navLinks } = props;
   const pathname = usePathname();
-  const session = useSession();
-
-  console.log(session);
-
   return (
     <>
-      {navLinks.map((link) => {
+      {navLinks.map((link, index) => {
         const isActive = pathname === link.href;
-
         return (
-          <Link key={link.label} href={link.href} className={isActive ? 'active' : ''}>
+          <Link
+            key={index}
+            href={link.href}
+            className={isActive ? "underline text-sky-400" : ""}
+          >
             {link.label}
           </Link>
         );
       })}
-      {session?.data && <Link href="/profile">Profile</Link>}
-      {session?.data ? (
-        <Link href="#" onClick={() => signOut({ callbackUrl: '/' })}>
-          Sign Out
-        </Link>
-      ) : (
-        <Link href="/signin">SignIn</Link>
-      )}
     </>
   );
 };
