@@ -1,4 +1,9 @@
+import { usePosts } from "@/store";
 import Link from "next/link";
+
+export const metaData = {
+  title: Blog,
+};
 
 async function getData() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
